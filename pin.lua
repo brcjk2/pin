@@ -12,7 +12,7 @@ end
 
 
 local function gauss(ndigits)
-    ndigits = ndigits + 3
+    ndigits = ndigits + ndigits // 600 + 2
     local one = bint.ipow(10, ndigits)
     sqrt2 = sqrt(2*one*one, ndigits)
 
@@ -38,7 +38,7 @@ local function gauss(ndigits)
     
     mypi = ((a[i]+b[i])*(a[i]+b[i])) // (4*t[i])
     mypi = tostring(mypi)
-    mypi = mypi:sub(1,1) .. '.' .. mypi:sub(2, ndigits - 2)
+    mypi = mypi:sub(1,1) .. '.' .. mypi:sub(2, ndigits - (ndigits // 600 + 2) + 1)
     
     return mypi
     
@@ -46,6 +46,7 @@ end
 
 
 
-pi = gauss(2400)
+pi = gauss(1600)
 
 print(pi)
+
